@@ -1,7 +1,7 @@
 <!-- PROJETO -->
 
 <div id="topo"></div>
-<h1 align="center"><strong>Curso Node</strong></h1>
+<h2 align="center"><strong>Curso Node 🟩</strong></h2>
 
 <div id="#sobre" align="center">
 
@@ -16,3 +16,20 @@ Repositório baseado no [Curso](https://www.youtube.com/playlist?list=PL29TaWXah
 
 ---
 
+<div id="#config">
+
+<h2 align="center"><strong>Configurações de ambiente</strong></h2>
+
+- `npx eslint --init` - Cria um arquivo *lint* **eslint.config.mjs**
+
+- `yarn add dotenv` - Faz a conexão com o arquivo **.env**
+
+- `yarn tsc --init` - Cria um arquivo **tsconfig.json**
+
+</div>
+
+---
+
+<div id="#">
+
+</div>

@@ -1,6 +1,7 @@
 import express from 'express';
 
-import { router } from '../routes';
+import './shared/services/translationError';
+import { router } from './routes';
 
 const server = express();
 

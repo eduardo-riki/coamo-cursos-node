@@ -1,14 +1,16 @@
 import { RequestHandler } from "express";
 import { StatusCodes } from "http-status-codes";
-import { AnyObjectSchema, ValidationError } from "yup";
+import { AnyObject, Maybe, ObjectSchema, ValidationError } from "yup";
 
 type TProperty = "body" | "header" | "params" | "query";
-type TAllSchemas = Record<TProperty, AnyObjectSchema>;
+type TGetSchema = <T extends Maybe<AnyObject>>(schema: ObjectSchema<T>) => ObjectSchema<T>;
+type TAllSchemas = Record<TProperty, ObjectSchema<any>>;
+type TGetAllSchemas = (getSchema: TGetSchema) => Partial<TAllSchemas>;
+type TValidation = (getAllSchemas: TGetAllSchemas) => RequestHandler;
 
-type TValidation = (schemas: Partial<TAllSchemas>) => RequestHandler;
-
-export const validation: TValidation = (schemas) => async (req, res, next) => {
+export const validation: TValidation = (getAllSchemas) => async (req, res, next) => {
   const errorsResult: Record<string, Record<string, string>> = {};
+  const schemas = getAllSchemas(schema => schema);
 
   Object.entries(schemas).forEach(([key, schema]) => {
     try {
@@ -22,16 +24,13 @@ export const validation: TValidation = (schemas) => async (req, res, next) => {
         errors[error.path] = error.message;
       });
 
-      errorsResult[key as TProperty] = errors;
-
+      errorsResult[key] = errors;
     }
-    
   });
-  
-  if (Object.entries(errorsResult).length = 0) {
+
+  if ((Object.entries(errorsResult).length == 0)) {
     return next();
   } else {
     return res.status(StatusCodes.BAD_REQUEST).json({ errors: errorsResult });
   }
-
 };

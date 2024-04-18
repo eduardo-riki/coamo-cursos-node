@@ -11,6 +11,12 @@ router.post(
   CidadeController.create
 );
 
+router.get(
+  "/cidade/listar",
+  CidadeController.getAllValidation,
+  CidadeController.getAll
+);
+
 // router.post('/teste', (req, res) => {
 //   console.log(req);
 

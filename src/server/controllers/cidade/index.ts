@@ -1,5 +1,5 @@
-import * as create from "./create";
-import * as getAll from "./getAll";
+import * as create from "./Create";
+import * as getAll from "./GetAll";
 
 export const CidadeController = {
   ...create,

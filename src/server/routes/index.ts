@@ -17,6 +17,24 @@ router.get(
   CidadeController.getAll
 );
 
+router.get(
+  "/cidade/:id",
+  CidadeController.getByIdValidation,
+  CidadeController.getById
+);
+
+router.put(
+  "/cidade/:id",
+  CidadeController.updateByIdValidation,
+  CidadeController.updateById
+);
+
+router.delete(
+  "/cidade/:id",
+  CidadeController.deleteByIdValidation,
+  CidadeController.deleteById
+);
+
 // router.post('/teste', (req, res) => {
 //   console.log(req);
 

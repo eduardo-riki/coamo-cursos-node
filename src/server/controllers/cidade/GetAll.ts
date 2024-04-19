@@ -13,14 +13,14 @@ interface IQueryProps {
 export const getAllValidation = validation((getSchema) => ({
   query: getSchema<IQueryProps>(
     Yup.object().shape({
-      page: Yup.number().optional().moreThan(0),
-      limit: Yup.number().optional().moreThan(0),
+      page: Yup.number().integer().optional().moreThan(0),
+      limit: Yup.number().integer().optional().moreThan(0),
       filter: Yup.string().optional(),
     })
   ),
 }));
 
 export const getAll = async (req: Request<{}, {}, {}, IQueryProps>, res: Response) => {
-  console.log(req.query);
+  console.log(req.body);
   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Não implementado!");
 };

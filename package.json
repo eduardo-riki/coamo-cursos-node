@@ -4,15 +4,18 @@
   "description": "Curso Node",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "ts-node-dev ./src/index.ts"
   },
   "author": "Eduardo Riki Matushita",
   "license": "ISC",
   "dependencies": {
+    "@types/jest": "^29.5.12",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "http-status-codes": "^2.3.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
     "yarn": "^1.22.22",
     "yup": "^1.4.0"
   },
@@ -21,6 +24,7 @@
     "@eslint/js": "^9.0.0",
     "@types/express": "^4.17.21",
     "@types/http-status-codes": "^1.2.0",
+    "@types/supertest": "^6.0.2",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "eslint": "^8.0.1",
     "eslint-config-standard-with-typescript": "^43.0.1",
@@ -28,6 +32,7 @@
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
     "globals": "^15.0.0",
+    "supertest": "^6.3.4",
     "ts-node-dev": "^2.0.0",
     "typescript": "*"
   }

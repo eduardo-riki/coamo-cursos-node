@@ -1,4 +1,8 @@
-node_modules
+/node_modules
+/build
+/coverage
+
+yarn-errors.log
 package-lock.json
 
 .env

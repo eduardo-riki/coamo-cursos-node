@@ -13,10 +13,11 @@ export const createValidation = validation((getSchema) => ({
     Yup.object().shape({
       nome: Yup.string().required().min(3),
     })
-  )
+  ),
 }));
 
 export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
   console.log(req.body);
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Created");
+
+  return res.status(StatusCodes.CREATED).json(1);
 };

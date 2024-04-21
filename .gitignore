@@ -6,3 +6,4 @@ yarn-errors.log
 package-lock.json
 
 .env
+.sqlite

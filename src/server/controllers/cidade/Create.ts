@@ -17,7 +17,11 @@ export const createValidation = validation((getSchema) => ({
 }));
 
 export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
-  console.log(req.body);
+  // console.log(res.statusCode);
 
-  return res.status(StatusCodes.CREATED).json(1);
+  if (res.statusCode == StatusCodes.OK) {
+    return res.send(req.body);
+  } return res.send("Não foi possível criar a cidade.");
+
+  // return res.status(StatusCodes.CREATED).json(1);
 };

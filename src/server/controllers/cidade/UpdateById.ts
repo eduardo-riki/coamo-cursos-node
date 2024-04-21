@@ -27,5 +27,10 @@ export const updateByIdValidation = validation((getSchema) => ({
 
 export const updateById = async (req: Request<IParamProps, {}, IBodyProps>, res: Response) => {
   console.log(req.body);
-  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Não implementado!");
+
+  if (res.statusCode == StatusCodes.OK) {
+    return res.send(req.body);
+  } return res.send("Não foi possível editar a cidade.");
+
+  // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Não implementado!");
 };

@@ -30,6 +30,20 @@ Repositório baseado no [Curso](https://www.youtube.com/playlist?list=PL29TaWXah
 
 ---
 
+<div id="#tests">
+
+<h2 align="center"><strong> Testes</strong></h2>
+
+- `yarn add jest ts-jest @types/jest` - Adiciona JEST para testes
+
+- `yarn jest --init` - Cria um arquivo **jest.config.ts**
+
+- `yarn test` - Realiza todos os testes **tsconfig.json**
+
+</div>
+
+---
+
 <div id="#">
 
 </div>

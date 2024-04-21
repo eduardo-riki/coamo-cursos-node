@@ -1,9 +1,9 @@
 import { StatusCodes } from "http-status-codes";
 import { testServer } from "../jest.setup";
 
-describe("Cidade - Create", () => {
-  it("Criar registro", async () => {
-    const res1 = await testServer.post("/cidade").send({
+describe("Cidade - Update By ID", () => {
+  it("Editar registro", async () => {
+    const res1 = await testServer.put("/cidade/1").send({
       nome: "Goioerê",
     });
 
@@ -11,8 +11,8 @@ describe("Cidade - Create", () => {
     // expect(typeof res1.body).toEqual("number");
   });
 
-  it("ERRRO - Criar registro", async () => {
-    const res1 = await testServer.post("/cidade").send({
+  it("ERRRO - Editar registro", async () => {
+    const res1 = await testServer.put("/cidade/0").send({
       nome: "Go",
     });
 

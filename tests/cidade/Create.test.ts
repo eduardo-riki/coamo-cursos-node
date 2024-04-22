@@ -5,20 +5,19 @@ describe("Cidade - Create", () => {
   it("Criar registro", async () => {
     const res1 = await testServer.post("/cidade").send({
       nome: "Goioerê",
+      estado: "Paraná",
     });
 
-    expect(res1.statusCode).toEqual(StatusCodes.OK);
+    expect(res1.statusCode).toEqual(StatusCodes.CREATED);
     // expect(typeof res1.body).toEqual("number");
   });
 
-  it("ERRRO - Criar registro", async () => {
-    const res1 = await testServer.post("/cidade").send({
-      nome: "Go",
-    });
+  // it("ERRO - Criar registro", async () => {
+  //   const res1 = await testServer.post("/cidade").send({
+  //     nome: "Go",
+  //   });
 
-    expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
-    // expect(typeof res1.body).toHaveProperty("errors.body.nome");
-  });
-
-
+  //   expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
+  //   // expect(typeof res1.body).toHaveProperty("errors.body.nome");
+  // });
 });

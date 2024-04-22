@@ -16,6 +16,19 @@ Repositório baseado no [Curso](https://www.youtube.com/playlist?list=PL29TaWXah
 
 ---
 
+<div id="#tutorial">
+
+<h2 align="center"><strong>Tutorial - Inicializar servidor</strong></h2>
+
+1. Execute `yarn` ou `npm install` para instalar dependências
+2. Configure sua `.env` à vontade
+2. Execute `yarn knex:migrate` ou `npm run knex:migrate` para inicializar o banco de dados
+3. Execute `yarn start` para iniciar o servidor
+
+</div>
+
+---
+
 <div id="#config">
 
 <h2 align="center"><strong>Configurações de ambiente</strong></h2>

@@ -5,6 +5,7 @@ describe("Cidade - Update By ID", () => {
   it("Editar registro", async () => {
     const res1 = await testServer.put("/cidade/1").send({
       nome: "Goioerê",
+      estado: "Paraná",
     });
 
     expect(res1.statusCode).toEqual(StatusCodes.OK);
@@ -19,6 +20,4 @@ describe("Cidade - Update By ID", () => {
     expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
     // expect(typeof res1.body).toHaveProperty("errors.body.nome");
   });
-
-
 });

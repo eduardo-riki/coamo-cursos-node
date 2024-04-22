@@ -5,7 +5,12 @@ export async function up(knex: Knex) {
   knex.schema
     .createTable(ETableNames.cidade, (table) => {
       table.bigIncrements("id").primary().index(),
-        table.string("nome", 100).index().notNullable(),
+        table.string("nome", 100).checkLength("<=", 100).index().notNullable(),
+        table
+          .string("estado", 100)
+          .checkLength("<=", 100)
+          .index()
+          .notNullable(),
         table.comment("Tabela usada para armazenar Cidades do sistema");
     })
     .then(() => {

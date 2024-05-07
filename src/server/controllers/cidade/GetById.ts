@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 import * as Yup from "yup";
 
 import { validation } from "../../shared/middleware";
+import { CidadeProvider } from "../../database/providers";
 
 interface IParamProps {
   id?: number;
@@ -17,11 +18,22 @@ export const getByIdValidation = validation((getSchema) => ({
 }));
 
 export const getById = async (req: Request<IParamProps>, res: Response) => {
-  console.log(req.body);
+  if (!req.params.id) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      errors: {
+        default: "O parâmetro id precisa ser informado.",
+      },
+    });
+  }
 
-  if (res.statusCode == StatusCodes.OK) {
-    return res.send(req.body);
-  } return res.send("Não foi possível selecionar a cidade.");
+  const result = await CidadeProvider.getById(req.params.id);
 
-  // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Não implementado!");
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: result.message,
+      },
+    });
+  }
+  return res.status(StatusCodes.OK).json(result);
 };

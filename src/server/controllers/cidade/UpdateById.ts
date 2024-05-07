@@ -4,6 +4,7 @@ import * as Yup from "yup";
 
 import { validation } from "../../shared/middleware";
 import { ICidade } from "../../database/models";
+import { CidadeProvider } from "../../database/providers";
 
 interface IParamProps {
   id?: number;
@@ -22,15 +23,29 @@ export const updateByIdValidation = validation((getSchema) => ({
       nome: Yup.string().required().min(3),
       estado: Yup.string().required().min(3),
     })
-  )
+  ),
 }));
 
-export const updateById = async (req: Request<IParamProps, {}, IBodyProps>, res: Response) => {
-  console.log(req.body);
+export const updateById = async (
+  req: Request<IParamProps, {}, IBodyProps>,
+  res: Response
+) => {
+  if (!req.params.id) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+      errors: {
+        default: "O parâmetro id precisa ser informado.",
+      },
+    });
+  }
 
-  if (res.statusCode == StatusCodes.OK) {
-    return res.send(req.body);
-  } return res.send("Não foi possível editar a cidade.");
+  const result = await CidadeProvider.updateById(req.params.id, req.body);
 
-  // return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Não implementado!");
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: result.message,
+      },
+    });
+  }
+  return res.status(StatusCodes.OK).json(result);
 };

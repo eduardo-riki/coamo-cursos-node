@@ -9,12 +9,10 @@ describe("Cidade - GetByID", () => {
     // expect(typeof res1.body).toEqual("number");
   });
 
-  it("ERRRO - Selecionar registro", async () => {
+  it("ERRO - Selecionar registro", async () => {
     const res1 = await testServer.get("/cidade/0")
 
     expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
     // expect(typeof res1.body).toHaveProperty("errors.body.nome");
   });
-
-
 });

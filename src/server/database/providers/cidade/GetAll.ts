@@ -6,12 +6,12 @@ export const getAll = async (
   page: number,
   limit: number,
   filter: string,
-  id = 0
+  id: number
 ): Promise<ICidade[] | Error> => {
   try {
     const result = await Knex(ETableNames.cidade)
       .select("*")
-      .where("id", Number(id))
+      .where("id", id)
       .orWhere("nome", "like", `%${filter}%`)
       .offset((page - 1) * limit)
       .limit(limit);

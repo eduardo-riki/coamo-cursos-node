@@ -31,7 +31,7 @@ export const getAll = async (
     req.query.page || 1,
     req.query.limit || 10,
     req.query.filter || "",
-    Number(req.query.id)
+    req.query.id || 0,
   );
   const count = await CidadeProvider.count(String(req.query.filter));
 

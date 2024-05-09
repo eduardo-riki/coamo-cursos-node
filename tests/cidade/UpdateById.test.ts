@@ -3,8 +3,13 @@ import { testServer } from "../jest.setup";
 
 describe("Cidade - Update By ID", () => {
   it("Editar registro", async () => {
+    await testServer.post("/cidade").send({
+      nome: "Cascavel",
+      estado: "Paraná",
+    });
+
     const res1 = await testServer.put("/cidade/1").send({
-      nome: "Goioerê",
+      nome: "Maringá",
       estado: "Paraná",
     });
 

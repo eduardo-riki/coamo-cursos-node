@@ -3,6 +3,11 @@ import { testServer } from "../jest.setup";
 
 describe("Cidade - GetByID", () => {
   it("Selecionar registro", async () => {
+    await testServer.post("/cidade").send({
+      nome: "Quarto Centenário",
+      estado: "Paraná",
+    });
+  
     const res1 = await testServer.get("/cidade/1")
 
     expect(res1.statusCode).toEqual(StatusCodes.OK);

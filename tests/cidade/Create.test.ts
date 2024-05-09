@@ -4,7 +4,7 @@ import { testServer } from "../jest.setup";
 describe("Cidade - Create", () => {
   it("Criar registro", async () => {
     const res1 = await testServer.post("/cidade").send({
-      nome: "Goioerê",
+      nome: "Umuarama",
       estado: "Paraná",
     });
 

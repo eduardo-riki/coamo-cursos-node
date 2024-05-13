@@ -3,14 +3,10 @@ import path from "path";
 import "dotenv/config";
 
 export const development: Knex.Config = {
-  client: "pg",
+  client: "sqlite3",
   useNullAsDefault: true,
   connection: {
-    host: process.env.POSTGRES_HOST,
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DATABASE,
-    ssl: { rejectUnauthorized: false },
+    filename: path.resolve(__dirname, "..", "..", "..", "..", "database.sqlite")
   },
   migrations: {
     directory: path.resolve(__dirname, "..", "migrations"),
@@ -20,11 +16,7 @@ export const development: Knex.Config = {
   },
   pool: {
     afterCreate: (connection: any, done: Function) => {
-      connection.query("SET CONSTRAINTS ALL IMMEDIATE;", (error: any) => {
-        if (error) {
-          console.error("Error enabling foreign key constraints:", error);
-        }
-      });
+      connection.run("PRAGMA foreign_keys = ON");
       done();
     },
   },
@@ -51,5 +43,29 @@ export const test: Knex.Config = {
 };
 
 export const production: Knex.Config = {
-  ...development,
+  client: "pg",
+  useNullAsDefault: true,
+  connection: {
+    host: process.env.POSTGRES_HOST,
+    user: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
+    ssl: { rejectUnauthorized: false },
+  },
+  migrations: {
+    directory: path.resolve(__dirname, "..", "migrations"),
+  },
+  seeds: {
+    directory: path.resolve(__dirname, "..", "seeds"),
+  },
+  pool: {
+    afterCreate: (connection: any, done: Function) => {
+      connection.query("SET CONSTRAINTS ALL IMMEDIATE;", (error: any) => {
+        if (error) {
+          console.error("Error enabling foreign key constraints:", error);
+        }
+      });
+      done();
+    },
+  },
 };

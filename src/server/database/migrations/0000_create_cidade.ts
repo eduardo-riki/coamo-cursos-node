@@ -2,7 +2,7 @@ import type { Knex } from "knex";
 import { ETableNames } from "../ETableNames";
 
 export async function up(knex: Knex) {
-  knex.schema
+  return knex.schema
     .createTable(ETableNames.cidade, (table) => {
       table.bigIncrements("id").primary().index(),
         table.string("nome", 100).checkLength("<=", 100).index().notNullable(),

@@ -13,20 +13,20 @@ export const createValidation = validation((getSchema) => ({
     Yup.object().shape({
       nomeCompleto: Yup.string().required().min(3).max(100),
       email: Yup.string().required().email(),
-      cidadeId: Yup.number().required(),
+      cidadeId: Yup.number().integer().required().moreThan(0),
     })
   ),
 }));
 
 export const create = async (req: Request<{}, {}, IPessoa>, res: Response) => {
-  // const result = await PessoaProvider.create(req.body);
+  const result = await PessoaProvider.create(req.body);
 
-  // if (result instanceof Error) {
-  //   return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-  //     errors: {
-  //       default: result.message,
-  //     },
-  //   });
-  // }
-  // return res.status(StatusCodes.CREATED).json(result);
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        default: result.message,
+      },
+    });
+  }
+  return res.status(StatusCodes.CREATED).json(result);
 };

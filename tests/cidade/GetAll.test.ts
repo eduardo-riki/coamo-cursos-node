@@ -3,15 +3,6 @@ import { testServer } from "../jest.setup";
 
 describe("Cidade - Get All", () => {
   it("Listar todos os registros", async () => {
-    await testServer.post("/cidade").send({
-      nome: "Goioerê",
-      estado: "Paraná",
-    });
-
-    await testServer.post("/cidade").send({
-      nome: "Campo Mourão",
-      estado: "Paraná",
-    });
     const res1 = await testServer.get("/cidade/listar");
 
     expect(res1.statusCode).toEqual(StatusCodes.OK);
@@ -22,6 +13,5 @@ describe("Cidade - Get All", () => {
     expect(Number(res2.header["x-total-count"])).toBeGreaterThan(0);
     expect(res2.statusCode).toEqual(StatusCodes.OK);
     expect(res2.body.length).toBeGreaterThan(0);
-    // expect(typeof res1.body).toEqual("number");
   });
 });

@@ -9,15 +9,5 @@ describe("Cidade - Create", () => {
     });
 
     expect(res1.statusCode).toEqual(StatusCodes.CREATED);
-    // expect(typeof res1.body).toEqual("number");
   });
-
-  // it("ERRO - Criar registro", async () => {
-  //   const res1 = await testServer.post("/cidade").send({
-  //     nome: "Go",
-  //   });
-
-  //   expect(res1.statusCode).toEqual(StatusCodes.BAD_REQUEST);
-  //   // expect(typeof res1.body).toHaveProperty("errors.body.nome");
-  // });
 });

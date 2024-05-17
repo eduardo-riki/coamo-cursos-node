@@ -11,7 +11,6 @@ export async function up(knex: Knex) {
         .checkLength("<=", 100)
         .notNullable();
       table.string("email", 100).unique().checkLength("<=", 100).notNullable();
-
       table
         .bigInteger("cidadeId")
         .index()
@@ -20,7 +19,6 @@ export async function up(knex: Knex) {
         .inTable(ETableNames.cidade)
         .onUpdate("CASCADE")
         .onDelete("RESTRICT");
-
       table.comment("Tabela usada para armazenar pessoas do sistema.");
     })
     .then(() => {

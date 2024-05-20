@@ -14,10 +14,10 @@ export async function up(knex: Knex) {
         .string("email", 100)
         .unique()
         .index()
-        .checkLength("<=", 100)
         .notNullable()
-        .checkLength(">", 6);
-      table.bigInteger("senha").notNullable().checkLength(">", 5);
+        .checkLength(">", 6)
+        .checkLength("<=", 100);
+      table.string("senha").notNullable().checkLength(">", 5);
       table.comment("Tabela usada para armazenar usuários do sistema.");
     })
     .then(() => {

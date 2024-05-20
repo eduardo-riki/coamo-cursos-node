@@ -3,6 +3,7 @@ import { StatusCodes } from "http-status-codes";
 
 import { CidadeController } from "../controllers";
 import { PessoaController } from "../controllers";
+import { UsuarioController } from "../controllers/usuario";
 
 const router = Router();
 
@@ -66,6 +67,20 @@ router.delete(
   "/pessoa/:id",
   PessoaController.deleteByIdValidation,
   PessoaController.deleteById
+);
+
+//==================================================
+
+router.post(
+  "/usuario/signUp",
+  UsuarioController.signUpValidation,
+  UsuarioController.signUp
+);
+
+router.post(
+  "/usuario/signIn",
+  UsuarioController.signInValidation,
+  UsuarioController.signIn
 );
 
 export { router };

@@ -9,7 +9,6 @@ export async function up(knex: Knex) {
         table
           .string("estado", 100)
           .checkLength("<=", 100)
-          .index()
           .notNullable(),
         table.comment("Tabela usada para armazenar Cidades do sistema");
     })

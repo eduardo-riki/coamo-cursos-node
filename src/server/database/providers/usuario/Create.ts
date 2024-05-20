@@ -7,6 +7,15 @@ export const create = async (
   usuario: Omit<IUsuario, "id">
 ): Promise<number | Error> => {
   try {
+    // Verifica se email existe
+    const [{ count }] = await Knex(ETableNames.usuario)
+      .where("email", usuario.email)
+      .count<[{ count: number }]>("* as count");
+
+    if (count > 0) {
+      return new Error("Email já cadastrado.");
+    }
+
     const hashPassword = await PasswordCrypto.hashPassword(usuario.senha);
 
     const [result] = await Knex(ETableNames.usuario)

@@ -20,9 +20,9 @@ export const signInValidation = validation((getSchema) => ({
 
 export const signIn = async (req: Request<{}, {}, IUsuario>, res: Response) => {
   const { email, senha } = req.body;
-  const result = await UsuarioProvider.getByEmail(email);
-
-  if (result instanceof Error) {
+  
+  const usuario = await UsuarioProvider.getByEmail(email);
+  if (usuario instanceof Error) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
       errors: {
         default: "Email e/ou senha são inválidos",
@@ -30,7 +30,8 @@ export const signIn = async (req: Request<{}, {}, IUsuario>, res: Response) => {
     });
   }
 
-  if (!(await PasswordCrypto.verifyPassword(senha, result.senha))) {
+  const isPasswordValid = await PasswordCrypto.verifyPassword(senha, usuario.senha);
+  if (!isPasswordValid) {
     return res.status(StatusCodes.UNAUTHORIZED).json({
       errors: {
         default: "Email e/ou senha são inválidos",

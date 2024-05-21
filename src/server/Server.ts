@@ -11,6 +11,7 @@ server.use(
     origin: process.env.ENABLED_CORS?.split(";") || [],
   })
 );
+
 server.use(express.json());
 server.use(router);
 

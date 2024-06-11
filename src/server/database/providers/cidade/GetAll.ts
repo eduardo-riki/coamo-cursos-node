@@ -13,6 +13,8 @@ export const getAll = async (
       .select("*")
       .where("id", id)
       .orWhere("nome", "like", `%${filter}%`)
+      .orderBy("nome")
+      .orderBy("estado")
       .offset((page - 1) * limit)
       .limit(limit);
 

@@ -8,9 +8,9 @@ const server = express();
 
 server.use(
   cors({
-    origin: "*",
-    methods: "*",
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: process.env.ENABLED_CORS || "",
+    methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["X-Requested-With", "Content-Type"],
     credentials: true,
   })
 );

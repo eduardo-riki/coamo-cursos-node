@@ -8,9 +8,9 @@ const server = express();
 
 server.use(
   cors({
-    origin: process.env.URL_BASE || "http://localhost:3000",
-    methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
-    allowedHeaders: ["X-Requested-With", "Content-Type"],
+    origin: "*",
+    methods: "*",
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );

@@ -8,7 +8,10 @@ const server = express();
 
 server.use(
   cors({
-    origin: process.env.ENABLED_CORS?.split(";") || [],
+    origin: '*',
+    methods: '*',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
   })
 );
 
